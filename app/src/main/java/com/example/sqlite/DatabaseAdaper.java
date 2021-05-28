@@ -16,72 +16,72 @@ public class DatabaseAdaper {
         databaseHelper=new DatabaseHelper(context, DB_NAME, null, VERSION);
     }
     //添加操作
-    public void add(Dog dog){
+    public void add(Medicine medicine){
         SQLiteDatabase db=databaseHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
-        values.put(PetMetaData.DogTable.NAME,dog.getName());
-        values.put(PetMetaData.DogTable.AGE,dog.getAge());
+        values.put(MedicineData.MedicineTable.NAME, medicine.getName());
+        values.put(MedicineData.MedicineTable.AGE, medicine.getAge());
         //参数（表名，可以为null的列名，更新字段的集合ContentValues）
         //合法：insert into dog(name,age) values('xx',2)
         //不合法：insert into dog() values()
-        db.insert(PetMetaData.DogTable.TABLE_NAME,null,values);
+        db.insert(MedicineData.MedicineTable.TABLE_NAME,null,values);
         db.close();
     }
     //删除操作
     public void delete(int id){
         SQLiteDatabase db=databaseHelper.getWritableDatabase();
-        String whereClause=PetMetaData.DogTable._ID+"=?";
+        String whereClause=MedicineData.MedicineTable._ID+"=?";
         String[] whereArgs= {String.valueOf(id)};
         //表名，删除条件，条件的值
-        db.delete(PetMetaData.DogTable.TABLE_NAME,whereClause,whereArgs);
+        db.delete(MedicineData.MedicineTable.TABLE_NAME,whereClause,whereArgs);
         db.close();
     }
     //更新操作
-    public void update(Dog dog){
+    public void update(Medicine medicine){
         SQLiteDatabase db=databaseHelper.getWritableDatabase();
         ContentValues values=new ContentValues();
-        values.put(PetMetaData.DogTable.NAME,dog.getName());
-        values.put(PetMetaData.DogTable.AGE,dog.getAge());
-        String whereClause=PetMetaData.DogTable._ID+"=?";
-        String[] whereArgs= {String.valueOf(dog.getId())};
+        values.put(MedicineData.MedicineTable.NAME, medicine.getName());
+        values.put(MedicineData.MedicineTable.AGE, medicine.getAge());
+        String whereClause=MedicineData.MedicineTable._ID+"=?";
+        String[] whereArgs= {String.valueOf(medicine.getId())};
         //表名，更新字段的集合ContentValues，条件，条件的值
-        db.update(PetMetaData.DogTable.TABLE_NAME,values,whereClause,whereArgs);
+        db.update(MedicineData.MedicineTable.TABLE_NAME,values,whereClause,whereArgs);
 
     }
     //凭id查询
-    public Dog findById(int id){
+    public Medicine findById(int id){
         SQLiteDatabase db=databaseHelper.getReadableDatabase();
-        String[] colums={PetMetaData.DogTable._ID,PetMetaData.DogTable.NAME,PetMetaData.DogTable.AGE};
+        String[] colums={MedicineData.MedicineTable._ID,MedicineData.MedicineTable.NAME,MedicineData.MedicineTable.AGE};
         //是否去除重复记录，参数（表名，要查询的列，查询条件，查询条件的值，分组条件，分组条件的值，排序，分页）
-        Cursor c=db.query(true,PetMetaData.DogTable.TABLE_NAME,colums,PetMetaData.DogTable._ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
-        Dog dog=null;
+        Cursor c=db.query(true,MedicineData.MedicineTable.TABLE_NAME,colums,MedicineData.MedicineTable._ID+"=?",new String[]{String.valueOf(id)},null,null,null,null);
+        Medicine medicine =null;
         if (c.moveToNext()){
-            dog=new Dog();
-            dog.setId(c.getInt(c.getColumnIndexOrThrow(PetMetaData.DogTable._ID)));
-            dog.setName(c.getString(c.getColumnIndexOrThrow(PetMetaData.DogTable.NAME)));
-            dog.setAge(c.getInt(c.getColumnIndexOrThrow(PetMetaData.DogTable.AGE)));
+            medicine =new Medicine();
+            medicine.setId(c.getInt(c.getColumnIndexOrThrow(MedicineData.MedicineTable._ID)));
+            medicine.setName(c.getString(c.getColumnIndexOrThrow(MedicineData.MedicineTable.NAME)));
+            medicine.setAge(c.getInt(c.getColumnIndexOrThrow(MedicineData.MedicineTable.AGE)));
         }
         c.close();
         db.close();
-        return dog;
+        return medicine;
     }
     //查询所有
-    public ArrayList<Dog> findAll(){
+    public ArrayList<Medicine> findAll(){
         SQLiteDatabase db=databaseHelper.getReadableDatabase();
-        String[] colums={PetMetaData.DogTable._ID,PetMetaData.DogTable.NAME,PetMetaData.DogTable.AGE};
+        String[] colums={MedicineData.MedicineTable._ID,MedicineData.MedicineTable.NAME,MedicineData.MedicineTable.AGE};
         //是否去除重复记录，参数（表名，要查询的列，查询条件，查询条件的值，分组条件，分组条件的值，排序，分页）
-        Cursor c=db.query(true,PetMetaData.DogTable.TABLE_NAME,colums,null,null,null,null,null,null);
-        ArrayList<Dog> dogs=new ArrayList<>();
-        Dog dog=null;
+        Cursor c=db.query(true,MedicineData.MedicineTable.TABLE_NAME,colums,null,null,null,null,null,null);
+        ArrayList<Medicine> medicines =new ArrayList<>();
+        Medicine medicine =null;
         while (c.moveToNext()){
-            dog=new Dog();
-            dog.setId(c.getInt(c.getColumnIndexOrThrow(PetMetaData.DogTable._ID)));
-            dog.setName(c.getString(c.getColumnIndexOrThrow(PetMetaData.DogTable.NAME)));
-            dog.setAge(c.getInt(c.getColumnIndexOrThrow(PetMetaData.DogTable.AGE)));
-            dogs.add(dog);
+            medicine =new Medicine();
+            medicine.setId(c.getInt(c.getColumnIndexOrThrow(MedicineData.MedicineTable._ID)));
+            medicine.setName(c.getString(c.getColumnIndexOrThrow(MedicineData.MedicineTable.NAME)));
+            medicine.setAge(c.getInt(c.getColumnIndexOrThrow(MedicineData.MedicineTable.AGE)));
+            medicines.add(medicine);
         }
         c.close();
         db.close();
-        return dogs;
+        return medicines;
     }
 }

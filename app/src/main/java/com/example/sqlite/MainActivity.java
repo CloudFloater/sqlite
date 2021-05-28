@@ -3,9 +3,7 @@ package com.example.sqlite;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addClick(View view){
-        Dog dog=new Dog("white",2);
-        databaseAdaper.add(dog);
+        Medicine medicine =new Medicine("white",2);
+        databaseAdaper.add(medicine);
     }
 
     public void deleteClick(View view){
@@ -39,20 +37,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateClick(View view){
-        Dog dog=new Dog(1,"black",2);
-        databaseAdaper.update(dog);
+        Medicine medicine =new Medicine(1,"black",2);
+        databaseAdaper.update(medicine);
     }
 
     public void findByIdClick(View view){
-        Dog dog=databaseAdaper.findById(1);
-        System.out.println(dog.inf());
+        int ID = Integer.parseInt(editText.getText().toString());
+        Medicine medicine =databaseAdaper.findById(ID);
+        System.out.println(medicine.inf());
     }
 
     public void findAllClick(View view){
-        ArrayList<Dog> dogs=databaseAdaper.findAll();
-        int size=dogs.size();
+        ArrayList<Medicine> medicines =databaseAdaper.findAll();
+        int size= medicines.size();
         for (int i = 0; i <size ; i++) {
-            System.out.println(dogs.get(i).inf());
+            System.out.println(medicines.get(i).inf());
         }
     }
 }

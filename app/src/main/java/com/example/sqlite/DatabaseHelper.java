@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME="pet.db";
     private static final int VERSION=1;
-    private static final String CREATE_TABLE_DOG="create table dog(_id integer primary key autoincrement,"+
+    private static final String CREATE_TABLE_Medicine_Kit="create table medicine(_id integer primary key autoincrement,"+
             "name text,age integer)";
-    private static final String DROP_TABLE_DOG="DROP TABLE IF EXISTS dog";
+    private static final String DROP_TABLE_Medicine_Kit="DROP TABLE IF EXISTS medicine";
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, null, VERSION);
     }
@@ -18,13 +18,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //SQLiteDatabase 用于操作数据库的工具类
-        db.execSQL(CREATE_TABLE_DOG);
+        db.execSQL(CREATE_TABLE_Medicine_Kit);
     }
 
     //升级更新数据库
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_TABLE_DOG);
-        db.execSQL(CREATE_TABLE_DOG);
+        db.execSQL(DROP_TABLE_Medicine_Kit);
+        db.execSQL(CREATE_TABLE_Medicine_Kit);
     }
 }

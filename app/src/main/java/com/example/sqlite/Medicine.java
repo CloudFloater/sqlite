@@ -1,22 +1,22 @@
 package com.example.sqlite;
 
-public class Dog {
+public class Medicine {
     private int id;
     private String name;
     private int age;
 
-    public Dog(int id, String name, int age) {
+    public Medicine(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Dog( String name, int age) {
+    public Medicine(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public Dog() {
+    public Medicine() {
 
     }
 
@@ -46,7 +46,7 @@ public class Dog {
 
 
     public String inf() {
-        return "Dog{"+
+        return "Medicine{"+
                 "id="+id+
                 ",name='"+name+"\'"+
                 ",age='"+age+"\'"+
