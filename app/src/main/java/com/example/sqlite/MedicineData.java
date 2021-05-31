@@ -11,7 +11,10 @@ public class MedicineData {
     public static abstract class MedicineTable implements BaseColumns{
         public static final String TABLE_NAME="medicine";
         public static final String NAME="name";
-        public static final String AGE="age";
+        public static final String DEADLINE="deadline";
+        public static final String FAMILY_NAME="family_name";
+        public static final String INTRODUCTION="introduction";
+        public static final String METHOD="method";
     }
 }
 

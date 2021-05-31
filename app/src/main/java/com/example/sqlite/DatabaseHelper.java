@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DB_NAME="pet.db";
+    private static final String DB_NAME="medicine.db";
     private static final int VERSION=1;
     private static final String CREATE_TABLE_Medicine_Kit="create table medicine(_id integer primary key autoincrement,"+
-            "name text,age integer)";
+            "name text,family_name text,deadline date,introduction text,method text)";
     private static final String DROP_TABLE_Medicine_Kit="DROP TABLE IF EXISTS medicine";
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, null, VERSION);

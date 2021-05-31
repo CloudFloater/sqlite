@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addClick(View view){
-        Medicine medicine =new Medicine("white",2);
+        Medicine medicine =new Medicine("阿莫西林","JACK","","","2019-12-11");
         databaseAdaper.add(medicine);
     }
 
@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateClick(View view){
-        Medicine medicine =new Medicine(1,"black",2);
+        int ID = Integer.parseInt(editText.getText().toString());
+        Medicine medicine =new Medicine(ID,"感冒灵","Black","","","2019-12-23");
         databaseAdaper.update(medicine);
     }
 
@@ -54,5 +55,14 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(medicines.get(i).inf());
         }
     }
+    public void findByNameClick(View view){
+        String family_name = editText.getText().toString();
+        ArrayList<Medicine> medicines =databaseAdaper.findByName(family_name);
+        int size= medicines.size();
+        for (int i = 0; i <size ; i++) {
+            System.out.println(medicines.get(i).inf());
+        }
+    }
 }
+
 
