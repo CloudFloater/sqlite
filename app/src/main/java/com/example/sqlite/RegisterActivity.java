@@ -1,6 +1,8 @@
 package com.example.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setSex(sexstr);
                 uService.register(user);
                 Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

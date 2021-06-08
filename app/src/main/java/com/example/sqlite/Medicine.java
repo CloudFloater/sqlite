@@ -52,7 +52,11 @@ public class Medicine {
         this.name = name;
         this.family_name = family_name;
     }
-
+    public Medicine(int id,String name, String family_name){
+        this.id =id;
+        this.name = name;
+        this.family_name = family_name;
+    }
     public Medicine() {
 
     }
@@ -104,7 +108,16 @@ public class Medicine {
     public String getMethod() { return method; }
 
     public void setMethod(String method) { this.method = method; }
-
+    public String INF(){
+      return
+              "id:"+id+
+              ",name:'"+name+"\'"+
+              ",服药人:'"+family_name+"\'"+
+              ",保质期:'"+deadline+"\'"+
+              ",药品介绍:'"+introduction+"\'"+
+              ",服药方法:'"+method+"\'"
+              ;
+    };
     public String inf() {
         return "Medicine{"+
                 "id="+id+
